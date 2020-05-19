@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">AnnoyingEx</string>
+    <string name="again_button">"Here we go again…"</string>
+    <string name="btn_block">Block</string>
 </resources>
