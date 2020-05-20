@@ -14,6 +14,7 @@ class AnnoyingExApp:Application() {
     lateinit var annoyUserManager: AnnoyUserManager
         private set
     lateinit var currentText: String
+        private set
     override fun onCreate() {
         super.onCreate()
         // Set Managers
@@ -24,10 +25,8 @@ class AnnoyingExApp:Application() {
         // Get the text data
         dataManager.getTexts({list ->
             dataManager.allTexts = list.messages
+            // set a current text
             updateCurrText()
-            Toast.makeText(this, "Got the texts!", Toast.LENGTH_LONG).show()
-        }, {
-            Toast.makeText(this, "Could not fetch text list", Toast.LENGTH_LONG).show()
         })
     }
     fun updateCurrText() {

@@ -17,7 +17,6 @@ class MainActivity : AppCompatActivity() {
         annoyUserManager = (applicationContext as AnnoyingExApp).annoyUserManager
         // Set on click references
         btnAgain.setOnClickListener {
-            (applicationContext as AnnoyingExApp).updateCurrText()
             annoyUserManager.startAnnoyingUser()
 
         }

@@ -21,14 +21,17 @@ class TextNotificationManager (private val context: Context) {
     }
 
     fun sendMessage() {
-        val content = (context as AnnoyingExApp).currentText
+        // gets current text and passes it into notification
+        val app = (context as AnnoyingExApp)
+        app.updateCurrText()
+        val content = app.currentText
         val dealsIntent = Intent(context, MainActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             putExtra(TEXT_ID, content)
         }
 
-        val pendingDealsIntent = PendingIntent.getActivity(context, 0, dealsIntent, PendingIntent.FLAG_UPDATE_CURRENT)
-
+        val pendingDealsIntent = PendingIntent.getActivity(context, Random.nextInt(), dealsIntent, PendingIntent.FLAG_UPDATE_CURRENT)
+        // create notification
         val notification = NotificationCompat.Builder(context, FUN_CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_sentiment_very_dissatisfied_black_24dp)
             .setContentTitle("You Know Who Again")
