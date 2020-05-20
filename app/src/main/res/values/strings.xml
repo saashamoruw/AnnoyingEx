@@ -2,4 +2,6 @@
     <string name="app_name">AnnoyingEx</string>
     <string name="again_button">"Here we go again…"</string>
     <string name="btn_block">Block</string>
+    <string name="noTextDefault">Unable to retrieve message</string>
+    <string name="title">Hi, I\'m your annoying ex :)</string>
 </resources>

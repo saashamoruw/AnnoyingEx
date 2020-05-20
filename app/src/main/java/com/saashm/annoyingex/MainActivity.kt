@@ -2,22 +2,36 @@ package com.saashm.annoyingex
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
-import com.saashm.annoyingex.backend.UpdateTextListener
-import com.saashm.annoyingex.managers.DataManager
+import android.view.View.GONE
+import android.view.View.VISIBLE
+import com.saashm.annoyingex.managers.AnnoyUserManager
+import com.saashm.annoyingex.managers.TextNotificationManager.Companion.TEXT_ID
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-    lateinit var dataManager: DataManager
+    private lateinit var annoyUserManager: AnnoyUserManager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        btnAgain.setOnClickListener() {
+        // Get managers
+        annoyUserManager = (applicationContext as AnnoyingExApp).annoyUserManager
+        // Set on click references
+        btnAgain.setOnClickListener {
+            (applicationContext as AnnoyingExApp).updateCurrText()
+            annoyUserManager.startAnnoyingUser()
 
         }
-        btnBlock.setOnClickListener() {
-
+        btnBlock.setOnClickListener {
+            annoyUserManager.stopWork()
         }
+        // If the user had clicked on notif then display that
+        val textContent = intent.getStringExtra(TEXT_ID)
+        if(textContent != null) {
+            tvTextMsg.visibility = VISIBLE
+            tvTextMsg.text = textContent
+        } else {
+            tvTextMsg.visibility = GONE
+        }
+
     }
-
 }
