@@ -2,7 +2,6 @@ package com.saashm.annoyingex.managers
 
 import android.content.Context
 import androidx.work.*
-import com.saashm.annoyingex.backend.SendNotificationWorker
 import java.util.concurrent.TimeUnit
 
 class AnnoyUserManager(context: Context) {
@@ -16,16 +15,16 @@ class AnnoyUserManager(context: Context) {
 //            .setRequiresCharging(true)
              .setRequiredNetworkType(NetworkType.CONNECTED)
             .build()
-//        val request = PeriodicWorkRequestBuilder<SendNotificationWorker>(20, TimeUnit.MINUTES)
-//            .setInitialDelay(5, TimeUnit.SECONDS)
-//            .setConstraints(constraints)
-//            .addTag(WORK_REQUEST_TAG)
-//            .build()
-        val request = OneTimeWorkRequestBuilder<SendNotificationWorker>()
+        val request = PeriodicWorkRequestBuilder<AnnoyUserWorker>(20, TimeUnit.MINUTES)
             .setInitialDelay(5, TimeUnit.SECONDS)
             .setConstraints(constraints)
             .addTag(WORK_REQUEST_TAG)
             .build()
+//        val request = OneTimeWorkRequestBuilder<SendNotificationWorker>()
+//            .setInitialDelay(5, TimeUnit.SECONDS)
+//            .setConstraints(constraints)
+//            .addTag(WORK_REQUEST_TAG)
+//            .build()
         workManager.enqueue(request)
     }
 

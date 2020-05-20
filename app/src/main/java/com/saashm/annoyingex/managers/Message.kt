@@ -1,4 +1,4 @@
-package com.saashm.annoyingex.backend
+package com.saashm.annoyingex.managers
 
 data class Message (
     val messages: List<String>
