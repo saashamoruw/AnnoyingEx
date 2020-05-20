@@ -18,6 +18,7 @@ class DataManager(context: Context) {
                 // Success
                 val gson = Gson()
                 val messages = gson.fromJson(response, Message::class.java)
+                allTexts = messages.messages
                 onListReady(messages)
             },
             {

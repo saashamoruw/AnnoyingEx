@@ -23,8 +23,7 @@ class AnnoyingExApp:Application() {
         annoyUserManager = AnnoyUserManager(this)
         currentText = getString(R.string.noTextDefault)
         // Get the text data
-        dataManager.getTexts({list ->
-            dataManager.allTexts = list.messages
+        dataManager.getTexts({
             // set a current text
             updateCurrText()
         })
